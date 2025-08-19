@@ -64,6 +64,8 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
 
+            implementation(compose.desktop.macos_arm64)
+
 
             implementation(libs.sql.delight.desktop)
         }

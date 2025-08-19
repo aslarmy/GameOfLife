@@ -53,3 +53,7 @@ include(":common:ui")
 include(":common:data")
 include(":common:domain")
 
+include(":features:auth:ui")
+include(":features:auth:data")
+include(":features:auth:domain")
+

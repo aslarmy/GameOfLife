@@ -64,6 +64,7 @@ kotlin {
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
+            implementation(compose.desktop.macos_arm64)
         }
         iosMain.dependencies {
 

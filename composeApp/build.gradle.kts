@@ -47,6 +47,10 @@ kotlin {
             implementation(projects.coreNetwork)
             implementation(projects.coreDatabase)
 
+            implementation(projects.features.auth.data)
+            implementation(projects.features.auth.domain)
+            implementation(projects.features.auth.ui)
+
             implementation(projects.game.data)
             implementation(projects.game.domain)
             implementation(projects.game.ui)
@@ -80,6 +84,7 @@ kotlin {
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
+            implementation(compose.desktop.macos_arm64)
         }
         iosMain.dependencies {
 
