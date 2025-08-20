@@ -33,6 +33,7 @@ import childedu.features.auth.ui.generated.resources.google_logo
 import childedu.features.auth.ui.generated.resources.male_kids
 import childedu.features.auth.ui.generated.resources.splash_bg
 import com.asl.common.ui.AnimatedKids
+import com.asl.common.ui.BackgroundImg
 import com.asl.common.ui.GameButton
 import com.asl.common.ui.MediumText
 import com.asl.common.ui.OutlineText
@@ -93,13 +94,14 @@ fun AuthScreen(
                 drawableResource = Res.drawable.female_kids
             )
 
-            AnimatedTextList(
-                fontSize = 60.sp,
-                texts = listOf("অ", "আ", "ই", "ক", "খ", "গ", "১", "২", "৩"),
-                modifier = Modifier
-                    .padding(bottom = 80.dp)
-                    .align(Alignment.BottomCenter),
-            )
+            if (isAnimated)
+                AnimatedTextList(
+                    fontSize = 60.sp,
+                    texts = listOf("অ", "আ", "ই", "ক", "খ", "গ", "১", "২", "৩"),
+                    modifier = Modifier
+                        .padding(bottom = 80.dp)
+                        .align(Alignment.BottomCenter),
+                )
 
             /*   CircularProgressIndicator(
                    modifier = Modifier
@@ -137,11 +139,8 @@ private fun AuthScreenContent(
             modifier = modifier.padding(it),
             contentAlignment = Alignment.Center
         ) {
-            Image(
-                painterResource(Res.drawable.bg),
-                contentDescription = "",
-                contentScale = ContentScale.Crop
-            )
+
+            BackgroundImg()
 
             AnimatedKids(
                 modifier = Modifier.align(Alignment.TopStart),
@@ -155,12 +154,13 @@ private fun AuthScreenContent(
                 drawableResource = Res.drawable.female_kids
             )
 
-            AnimatedTextList(
-                fontSize = 60.sp,
-                texts = listOf("অ", "আ", "ই", "ক", "খ", "গ", "১", "২", "৩","A","B","C"),
-                modifier = Modifier
-                    .align(Alignment.TopCenter),
-            )
+            if (isAnimated)
+                AnimatedTextList(
+                    fontSize = 60.sp,
+                    texts = listOf("অ", "আ", "ই", "ক", "খ", "গ", "১", "২", "৩", "A", "B", "C"),
+                    modifier = Modifier
+                        .align(Alignment.TopCenter),
+                )
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,

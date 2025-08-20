@@ -71,6 +71,7 @@ import childedu.features.auth.ui.generated.resources.bg
 import childedu.features.auth.ui.generated.resources.female_kids
 import childedu.features.auth.ui.generated.resources.male_kids
 import com.asl.common.ui.AnimatedKids
+import com.asl.common.ui.BackgroundImg
 import com.asl.common.ui.GameButton
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.DrawableResource
@@ -117,11 +118,7 @@ fun CreateAvatarScreen(
                     .padding(it),
             ) {
 
-                Image(
-                    painterResource(Res.drawable.bg),
-                    contentDescription = "",
-                    contentScale = ContentScale.Crop
-                )
+                BackgroundImg()
 
                 AnimatedKids(
                     modifier = Modifier.align(Alignment.BottomStart),
@@ -135,13 +132,14 @@ fun CreateAvatarScreen(
                     drawableResource = Res.drawable.female_kids
                 )
 
-                AnimatedTextList(
-                    fontSize = 60.sp,
-                    texts = listOf("অ", "আ", "ই", "ক", "খ", "গ", "১", "২", "৩", "A", "B", "C"),
-                    modifier = Modifier
-                        .padding(bottom = 80.dp)
-                        .align(Alignment.BottomCenter),
-                )
+                if (isAnimated)
+                    AnimatedTextList(
+                        fontSize = 60.sp,
+                        texts = listOf("অ", "আ", "ই", "ক", "খ", "গ", "১", "২", "৩", "A", "B", "C"),
+                        modifier = Modifier
+                            .padding(bottom = 80.dp)
+                            .align(Alignment.BottomCenter),
+                    )
 
                 Column(
                     modifier = Modifier.fillMaxWidth()
@@ -266,15 +264,11 @@ fun BalloonTextK(
     Text(
         text = text,
         fontSize = fontSize,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.ExtraBold,
         modifier = modifier
             .padding(32.dp),
         style = TextStyle(
-            /* color = Color.Blue,*/
-            brush = Brush.radialGradient(
-                colors = listOf(color1, color2, Color.White),
-                radius = 400f
-            ),
+            color = Color.Blue,
             shadow = Shadow(
                 color = Color.Black.copy(alpha = 0.5f),
                 offset = Offset(8f, 8f),
@@ -352,13 +346,13 @@ private fun AvatarLogo(
 ) {
 
     val selectedBorderColor =
-        if (isSelected) Color.Blue.copy(alpha = 0.6f) else Color.LightGray
+        if (isSelected) Color.Green else Color.LightGray
 
     Box(
         modifier = Modifier
             .size(90.dp)
             .clip(CircleShape)
-            .border(4.dp, selectedBorderColor, CircleShape)
+            .border(4.dp, color = selectedBorderColor, CircleShape)
             .clickable(onClick = onClickAvatar)
     ) {
         Image(
@@ -368,6 +362,7 @@ private fun AvatarLogo(
             modifier = Modifier.matchParentSize()
         )
     }
+
 }
 
 val avatarResList = listOf(

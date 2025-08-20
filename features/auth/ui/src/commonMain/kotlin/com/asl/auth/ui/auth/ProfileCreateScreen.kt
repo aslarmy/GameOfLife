@@ -47,6 +47,7 @@ import childedu.features.auth.ui.generated.resources.bg
 import childedu.features.auth.ui.generated.resources.female_kids
 import childedu.features.auth.ui.generated.resources.male_kids
 import com.asl.common.ui.AnimatedKids
+import com.asl.common.ui.BackgroundImg
 import com.asl.common.ui.CustomTextField
 import com.asl.common.ui.GameButton
 import com.asl.common.ui.MediumText
@@ -86,11 +87,7 @@ fun ProfileCreateScreen(
                 .fillMaxWidth()
                 .padding(it),
         ) {
-            Image(
-                painterResource(Res.drawable.bg),
-                contentDescription = "",
-                contentScale = ContentScale.Crop
-            )
+            BackgroundImg()
 
             AnimatedKids(
                 modifier = Modifier.align(Alignment.BottomStart),
@@ -104,13 +101,14 @@ fun ProfileCreateScreen(
                 drawableResource = Res.drawable.female_kids
             )
 
-            AnimatedTextList(
-                fontSize = 60.sp,
-                texts = listOf("অ", "আ", "ই", "ক", "খ", "গ", "১", "২", "৩", "A", "B", "C"),
-                modifier = Modifier
-                    .padding(bottom = 80.dp)
-                    .align(Alignment.BottomCenter),
-            )
+            if (isAnimated)
+                AnimatedTextList(
+                    fontSize = 60.sp,
+                    texts = listOf("অ", "আ", "ই", "ক", "খ", "গ", "১", "২", "৩", "A", "B", "C"),
+                    modifier = Modifier
+                        .padding(bottom = 80.dp)
+                        .align(Alignment.BottomCenter),
+                )
 
 
             Column(

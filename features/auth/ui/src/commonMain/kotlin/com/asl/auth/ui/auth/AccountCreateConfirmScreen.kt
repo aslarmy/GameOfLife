@@ -78,7 +78,10 @@ fun AccountCreateConfirmScreen(
 
             AnimatedKidsConfirmationLogo()
 
-            OutlineText(text = "Your Account has been created successfully")
+            OutlineText(
+                text = "Your Account has been created successfully",
+                fontSize = 30.sp
+            )
 
             GameButton(
                 text = "Continue", onClick = onClickProfileScreen,

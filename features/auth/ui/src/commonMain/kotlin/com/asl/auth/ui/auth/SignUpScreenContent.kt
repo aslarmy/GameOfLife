@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import childedu.features.auth.ui.generated.resources.Res
 import childedu.features.auth.ui.generated.resources.bg
 import childedu.features.auth.ui.generated.resources.splash_bg
+import com.asl.common.ui.BackgroundImg
 import com.asl.common.ui.CustomTextField
 import com.asl.common.ui.GameButton
 import com.asl.common.ui.MediumText
@@ -43,11 +44,7 @@ fun SignUpScreenContent(
         modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
-        Image(
-            painterResource(Res.drawable.bg),
-            contentDescription = "",
-            contentScale = ContentScale.Crop
-        )
+        BackgroundImg()
 
         Column(
             modifier = Modifier.align(Alignment.Center),

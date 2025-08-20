@@ -12,6 +12,7 @@ import com.asl.auth.ui.auth.CreateAvatarScreen
 import com.asl.auth.ui.auth.LoginScreenContent
 import com.asl.auth.ui.auth.ProfileCreateScreen
 import com.asl.auth.ui.auth.SignUpScreenContent
+import com.asl.letter_and_number.ui.MainScreen
 
 object AuthNavGraph : BaseNavGraph {
 
@@ -26,6 +27,8 @@ object AuthNavGraph : BaseNavGraph {
 
         data object ProfileCreateScreen : Dest("/profile-creation-screen")
         data object AvatarCreateScreen : Dest("/avatar-create-screen")
+
+        data object MainScreen : Dest("/main-screen")
     }
 
     override fun build(
@@ -93,12 +96,21 @@ object AuthNavGraph : BaseNavGraph {
             composable(route = Dest.AvatarCreateScreen.route) {
                 CreateAvatarScreen(
                     modifier = Modifier.fillMaxSize(),
-                    onClickMainScreen = {},
+                    onClickMainScreen = {
+                        navHostController.navigate(Dest.MainScreen.route)
+                    },
                     onBackClick = {
                         navHostController.popBackStack()
                     }
                 )
             }
+
+            composable(route = Dest.MainScreen.route) {
+                MainScreen(
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+
         }
     }
 

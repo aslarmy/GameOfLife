@@ -4,20 +4,18 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
-
-    alias(libs.plugins.sql.delight)
 }
 
 kotlin {
     androidTarget {
-        /*    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-            compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_11)
-            }*/
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
     }
 
     listOf(
@@ -27,8 +25,7 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
-            //  isStatic = true
-            linkerOpts("-lsqlite3")
+            isStatic = true
         }
     }
 
@@ -40,47 +37,29 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation(libs.sql.delight.android)
         }
+
         commonMain.dependencies {
 
-            implementation(projects.coreNetwork)
-            implementation(projects.coreDatabase)
-
-            implementation(projects.features.auth.data)
-            implementation(projects.features.auth.domain)
-            implementation(projects.features.auth.ui)
-
-            implementation(projects.features.letterAndNumberIntroduce.data)
-            implementation(projects.features.letterAndNumberIntroduce.domain)
-            implementation(projects.features.letterAndNumberIntroduce.ui)
-
-            implementation(projects.game.data)
-            implementation(projects.game.domain)
-            implementation(projects.game.ui)
-
-            implementation(projects.search.data)
-            implementation(projects.search.domain)
-            implementation(projects.search.ui)
-
-            implementation(projects.favourite.ui)
-            implementation(projects.favourite.domain)
-            implementation(projects.favourite.data)
-
-            implementation(projects.coreDatabase)
+            implementation(projects.common.data)
+            implementation(projects.common.domain)
+            implementation(projects.common.ui)
 
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
+            implementation(compose.materialIconsExtended)
+            implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
-            implementation(libs.navigation.compose)
+            implementation(libs.koin.compose.viewmodel)
 
-            implementation(libs.koin.core)
+            implementation(libs.coil)
+            implementation(libs.coil.ktor)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -97,16 +76,12 @@ kotlin {
 }
 
 android {
-    namespace = "com.asl.childedu"
+    namespace = "com.asl.letter_and_number.data"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.asl.childedu"
         minSdk = libs.versions.android.minSdk.get().toInt()
-        //noinspection OldTargetApi
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
     }
     packaging {
         resources {
@@ -129,13 +104,15 @@ dependencies {
 }
 
 compose.desktop {
+
     application {
-        mainClass = "com.asl.childedu.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.asl.childedu"
+            packageName = "com.asl.letter_and_number.data"
             packageVersion = "1.0.0"
         }
+
     }
+
 }

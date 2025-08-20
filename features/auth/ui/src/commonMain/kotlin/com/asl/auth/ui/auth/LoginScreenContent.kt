@@ -30,6 +30,7 @@ import childedu.features.auth.ui.generated.resources.Res
 import childedu.features.auth.ui.generated.resources.bg
 import childedu.features.auth.ui.generated.resources.google_logo
 import childedu.features.auth.ui.generated.resources.splash_bg
+import com.asl.common.ui.BackgroundImg
 import com.asl.common.ui.CustomTextField
 import com.asl.common.ui.GameButton
 import com.asl.common.ui.MediumText
@@ -50,11 +51,7 @@ fun LoginScreenContent(
         contentAlignment = Alignment.Center
     ) {
 
-        Image(
-            painterResource(Res.drawable.bg),
-            contentDescription = "",
-            contentScale = ContentScale.Crop
-        )
+        BackgroundImg()
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

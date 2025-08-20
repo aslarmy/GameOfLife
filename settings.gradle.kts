@@ -57,3 +57,6 @@ include(":features:auth:ui")
 include(":features:auth:data")
 include(":features:auth:domain")
 
+include(":features:letterAndNumberIntroduce:ui")
+include(":features:letterAndNumberIntroduce:data")
+include(":features:letterAndNumberIntroduce:domain")
